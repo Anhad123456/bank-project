@@ -1,5 +1,10 @@
 from bank_account import BankAccount
 
-BankAccount("Anhad", 200.0)
+anhad = BankAccount("Anhad", 200.0)
 
-BankAccount("Bob", 500.0)
+bob = BankAccount("Bob", 500.0)
+
+
+anhad.withdraw(100.0)
+
+bob.withdraw(600.0)
