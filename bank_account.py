@@ -9,12 +9,13 @@ class BankAccount:
         print(f"Account created \n Name : {name} \n Balance : ${balance}")
 
     def getBalance(self):
-        print(f"Account balance is ${self.balance:.2f}")
+        print(f"Account {self.name} balance is ${self.balance:.2f}")
         return self.balance
     
-    def deposit(self, amount):
+    def deposit(self, amount, isPrint = True):
         self.balance += amount
-        print(f"Deposited {amount}, Account balance is ${self.balance:.2f}")
+        if isPrint:
+            print(f"Deposited {amount}, Account balance is ${self.balance:.2f}")
 
     def viableTranscation(self, amount):
         if self.balance >= amount:
@@ -30,3 +31,13 @@ class BankAccount:
             self.getBalance()
         except BalanceException as error:
             print(f"Withdrawal Interrupted: {error}")
+
+    def transfer(self, recipient,amount):
+        try:
+            self.viableTranscation(amount)
+            self.balance -= amount
+            recipient.deposit(amount, False)
+            print("Transfer complete")
+            self.getBalance()
+        except BalanceException as err1:
+            print(f"Transfer Interrupted: {err1}")
